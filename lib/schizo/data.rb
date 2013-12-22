@@ -13,3 +13,9 @@ module Schizo
 
   end
 end
+
+module Mongoid
+  module Document
+    include Schizo::Data
+  end
+end

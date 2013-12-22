@@ -12,13 +12,10 @@ module Schizo
     end
 
     module ClassMethods
-
-      def schizo
-        @schizo
-      end
+      attr_reader :schizo
 
       def name
-        if defined?(binding.pry) and caller.any?{ |line| line =~ /pry\/commands\/ls.rb/ }
+        if schizo.nil?
           "Schizo::Facade(0x%014x)" % object_id
         else
           schizo.name
@@ -30,7 +27,7 @@ module Schizo
       end
 
       def inspect
-        if defined?(ActiveRecord::Base) and ancestors.include?(ActiveRecord::Base)
+        if defined?(Mongoid::Document) and ancestors.include?(Mongoid::Document)
           # Copy pasta from ActiveRecord
           if abstract_class?
             "#{name}(abstract)"
@@ -58,7 +55,7 @@ module Schizo
     end
 
     def inspect
-      if defined?(ActiveRecord::Base) and kind_of?(ActiveRecord::Base)
+      if defined?(Mongoid::Document) and kind_of?(Mongoid::Document)
         super
       else
         to_s
