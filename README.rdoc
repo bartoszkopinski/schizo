@@ -93,7 +93,7 @@ This is easier to explain in an example (continuing from the Quickstart example)
   user.as(Poster) do |poster|
     poster.kind_of?(User)     # => true
     poster.instance_of?(User) # => true
-    
+
     poster.class.name # => "User"
     poster.class      # => Schizo::Facades::User::Poster
   end
@@ -170,7 +170,7 @@ You can use <tt>ActiveSupport::Concern</tt> instead of <tt>Schizo::Role</tt>
     extend ActiveSupport::Concern
     def something; end
   end
-  
+
   foo = Foo.new
   baz = foo.as(Baz)
   baz.something
