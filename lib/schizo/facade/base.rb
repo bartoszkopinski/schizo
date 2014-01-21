@@ -13,6 +13,10 @@ module Schizo
       end
 
       module ClassMethods #:nodoc:
+        # Mongoid compatibility hack
+        def hereditary?
+          superclass.hereditary?
+        end
 
         def name
           superclass.name || "AnonClass#{object_id}"
